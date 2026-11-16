@@ -24,6 +24,10 @@ class User(AbstractUser):
         unique=True, max_length="30", verbose_name="Телеграм id", blank=True, null=True
     )
 
+    avatar = models.ImageField(
+        upload_to="avatar/", validators="Аватарка", blank=True, null=True
+    )
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
