@@ -20,12 +20,12 @@ class User(AbstractUser):
         validators=[check_phone_number],
     )
 
-    tg_id = models.PositiveIntegerField(
-        unique=True, max_length="30", verbose_name="Телеграм id", blank=True, null=True
+    tg_id = models.IntegerField(
+        unique=True, verbose_name="Телеграм id", blank=True, null=True
     )
 
     avatar = models.ImageField(
-        upload_to="avatar/", validators="Аватарка", blank=True, null=True
+        upload_to="avatar/", verbose_name="Аватарка", blank=True, null=True
     )
 
     USERNAME_FIELD = "email"
