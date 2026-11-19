@@ -20,13 +20,13 @@ class User(AbstractUser):
         validators=[check_phone_number],
     )
 
-    tg_id = models.IntegerField(
-        unique=True, verbose_name="Телеграм id", blank=True, null=True
-    )
+    tg_id = models.IntegerField(unique=True, verbose_name="Телеграм id")
 
     avatar = models.ImageField(
         upload_to="avatar/", verbose_name="Аватарка", blank=True, null=True
     )
+
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
@@ -37,3 +37,4 @@ class User(AbstractUser):
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
+        ordering = ["created_at", "email"]
