@@ -27,8 +27,6 @@ class Habit(models.Model):
 
     do = models.CharField(verbose_name="Действие", max_length=100)
 
-    is_nice_habit = models.BooleanField(verbose_name="Приятная привычка")
-
     time = models.TimeField(verbose_name="Время выполнения")
 
     time_zone_habit = models.TimeField(
