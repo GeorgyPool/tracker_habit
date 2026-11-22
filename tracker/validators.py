@@ -19,3 +19,18 @@ class ValidateTimeForHabit:
                 raise ValidationError(
                     "Время выполнения привычки не может превышать 120 сек"
                 )
+
+
+class ValidateAddAssociatedHabit:
+    """
+    Проверяет что связанную привычку можно добавить только к привычке у которой отсутствует награда
+    """
+
+    def __call__(self, attrs):
+
+        habit = attrs["habit"]
+
+        if habit.reward is not None:
+            raise ValidationError(
+                "Связанную приятную привычку можно добавить только к полезной привычке у которой отсутствует награда за привычку"
+            )
