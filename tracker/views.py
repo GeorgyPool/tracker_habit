@@ -46,7 +46,7 @@ class HabitViewSet(viewsets.ModelViewSet):
 class AssociatedHabitViewSet(viewsets.ModelViewSet):
     queryset = AssociatedHabit.objects.all()
     serializer_class = AssociatedHabitSerializer
-    pagination_class = Pagination
+    pagination_class = PaginationTracker
 
     def get_permissions(self):
         if self.action == "create":
