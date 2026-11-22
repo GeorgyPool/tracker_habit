@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "users",
     "tracker",
     "rest_framework_simplejwt",
+    "django_celery_beat",
 ]
 
 MIDDLEWARE = [
