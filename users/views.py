@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
 
 from users.models import User
+from users.paginations import PaginationUsers
 from users.permissons import IsModer, IsUser
 from users.serializers import UserSerializer
 
@@ -10,6 +11,7 @@ from users.serializers import UserSerializer
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    pagination_class = PaginationUsers
 
     def get_permissions(self):
         # Любой пользователь может зарегистрироваться
