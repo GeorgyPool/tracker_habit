@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "users",
     "tracker",
+    "time_managment",
     "rest_framework_simplejwt",
     "django_celery_beat",
 ]
