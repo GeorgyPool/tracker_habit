@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import status, viewsets
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from tracker.models import AssociatedHabit, Habit
 from tracker.paginations import PaginationTracker
@@ -83,3 +85,17 @@ class AssociatedHabitViewSet(viewsets.ModelViewSet):
             self.queryset = associated_habit
 
         return super().list(request, *args, **kwargs)
+
+
+class PublicHabit(APIView):
+    """
+    Представление для публичных привычек
+    """
+
+    def get(self, request, *args, **kwargs):
+        habits = Habit.objects.filter(is_public=True)
+        paginator = PaginationTracker()
+        paginator.paginate_queryset(habits, request, view=self)
+        serializer = HabitSerializer(habits, many=True)
+
+        return paginator.get_paginated_response(serializer.data)

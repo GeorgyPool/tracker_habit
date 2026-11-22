@@ -13,4 +13,6 @@ router.register(
     r"associated_habit", views.AssociatedHabitViewSet, basename="associated_habit"
 )
 
-urlpatterns = [] + router.urls
+urlpatterns = [
+    path("public/", views.PublicHabit.as_view(), name="public")
+] + router.urls
