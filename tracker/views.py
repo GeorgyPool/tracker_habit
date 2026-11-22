@@ -4,6 +4,7 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
 
 from tracker.models import AssociatedHabit, Habit
+from tracker.paginations import Pagination
 from tracker.permissions import IsOwner
 from tracker.serializers import AssociatedHabitSerializer, HabitSerializer
 from tracker.services import get_associated_habit_list, get_habit_list
@@ -13,6 +14,7 @@ from users.permissons import IsModer
 class HabitViewSet(viewsets.ModelViewSet):
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
+    pagination_class = Pagination
 
     def get_permissions(self):
         if self.action == "create":
@@ -44,6 +46,7 @@ class HabitViewSet(viewsets.ModelViewSet):
 class AssociatedHabitViewSet(viewsets.ModelViewSet):
     queryset = AssociatedHabit.objects.all()
     serializer_class = AssociatedHabitSerializer
+    pagination_class = Pagination
 
     def get_permissions(self):
         if self.action == "create":
