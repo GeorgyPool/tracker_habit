@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     "tracker",
     "rest_framework_simplejwt",
     "django_celery_beat",
-    "corsheaders"
+    "corsheaders",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
@@ -163,7 +164,7 @@ API_BOT = os.getenv("API_BOT")
 URL_BOT = f"https://api.telegram.org/bot{API_BOT}/sendMessage"
 
 CORS_ALLOWED_ORIGINS = [
-    'http://*',
+    "http://*",
 ]
 CSRF_TRUSTED_ORIGINS = [
     "https://read-and-write.example.com",
