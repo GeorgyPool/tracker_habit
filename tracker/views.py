@@ -1,8 +1,9 @@
+from datetime import datetime
+
 from django.shortcuts import render
-from rest_framework import status, viewsets
+from rest_framework import viewsets
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from tracker.models import AssociatedHabit, Habit
@@ -19,6 +20,9 @@ class HabitViewSet(viewsets.ModelViewSet):
     pagination_class = PaginationTracker
 
     def get_permissions(self):
+        """
+        Настройка разрешений для методов
+        """
         if self.action == "create":
             self.permission_classes = [IsAuthenticated]
         elif self.action in ["destroy", "update"]:
@@ -29,7 +33,10 @@ class HabitViewSet(viewsets.ModelViewSet):
         return super().get_permissions()
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        """
+        Метод создания с переопределением создания владельца и даты для проверки в дальнейшем
+        """
+        serializer.save(owner=self.request.user, date_check=datetime.now().date())
 
     def list(self, request, *args, **kwargs):
         """

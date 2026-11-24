@@ -52,6 +52,10 @@ class Habit(models.Model):
         verbose_name="Доступна для просмотра другим", default=False
     )
 
+    date_check = models.DateField(
+        verbose_name="Дата проверки для отправки", null=True, blank=True
+    )
+
     created_at = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
 
     def __str__(self):

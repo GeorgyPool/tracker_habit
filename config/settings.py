@@ -33,7 +33,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "users",
     "tracker",
-    "time_managment",
     "rest_framework_simplejwt",
     "django_celery_beat",
 ]
@@ -165,3 +164,4 @@ CELERY_BEAT_SCHEDULE = {
 }
 
 API_BOT = os.getenv("API_BOT")
+URL_BOT = f"https://api.telegram.org/bot{API_BOT}/sendMessage"
