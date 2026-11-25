@@ -1,29 +1,35 @@
+import datetime
+
 from rest_framework.exceptions import ValidationError
 
 
 class ValidateTimeForHabit:
     """
-    Проверяет что время на выполнение привычки не равно или не меньше времени привычки.
+    Проверяет чтобы время на выполнение привычки не превышало 120 секунд.
     """
 
     def __call__(self, attrs):
-        time = attrs["time"]
-        time_zone = attrs.get("time_zone_habit")
 
-        if time_zone is not None and time_zone <= time:
-            raise ValidationError(
-                "Время выполнение привычки не может быть меньше или равно времени привычки"
-            )
+        time_zone_habit = attrs.get("time_zone_habit")
+        string_time = "00:02:00"
+        seconds = datetime.datetime.strptime(string_time, "%H:%M:%S").time()
+
+        if time_zone_habit is not None:
+            if time_zone_habit > seconds:
+                raise ValidationError("Время выполнения привычки не может превышать 120 сек")
 
 
-class ValidateReward:
-    """Проверят чтобы награду можно было указать только для полезной привычки"""
+class ValidateAddAssociatedHabit:
+    """
+    Проверяет что связанную привычку можно добавить только к привычке у которой отсутствует награда
+    """
 
     def __call__(self, attrs):
-        is_nice_habit = attrs["is_nice_habit"]
-        reward = attrs.get("reward")
 
-        if reward is not None and is_nice_habit is True:
+        habit = attrs["habit"]
+
+        if habit.reward is not None:
             raise ValidationError(
-                "Для приятной привычки нельзя указать награду, но вы можете указать связанную привычку в дальнейшем"
+                "Связанную приятную привычку можно добавить "
+                "только к полезной привычке у которой отсутствует награда за привычку"
             )

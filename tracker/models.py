@@ -27,13 +27,9 @@ class Habit(models.Model):
 
     do = models.CharField(verbose_name="Действие", max_length=100)
 
-    is_nice_habit = models.BooleanField(verbose_name="Приятная привычка")
-
     time = models.TimeField(verbose_name="Время выполнения")
 
-    time_zone_habit = models.TimeField(
-        verbose_name="Время на выполнение привычки", blank=True, null=True
-    )
+    time_zone_habit = models.TimeField(verbose_name="Время на выполнение привычки", blank=True, null=True)
 
     periodic_habit = models.CharField(
         verbose_name="Периодичность выполнения",
@@ -42,17 +38,13 @@ class Habit(models.Model):
         max_length=20,
     )
 
-    place = models.CharField(
-        verbose_name="Место выполнения", max_length=100, null=True, blank=True
-    )
+    place = models.CharField(verbose_name="Место выполнения", max_length=100, null=True, blank=True)
 
-    reward = models.CharField(
-        verbose_name="Вознаграждение", max_length=100, blank=True, null=True
-    )
+    reward = models.CharField(verbose_name="Вознаграждение", max_length=100, blank=True, null=True)
 
-    is_public = models.BooleanField(
-        verbose_name="Доступна для просмотра другим", default=False
-    )
+    is_public = models.BooleanField(verbose_name="Доступна для просмотра другим", default=False)
+
+    date_check = models.DateField(verbose_name="Дата проверки для отправки", null=True, blank=True)
 
     created_at = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
 
