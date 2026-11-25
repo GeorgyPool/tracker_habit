@@ -28,9 +28,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created_at",
-                    models.DateTimeField(
-                        auto_now_add=True, verbose_name="Дата создания"
-                    ),
+                    models.DateTimeField(auto_now_add=True, verbose_name="Дата создания"),
                 ),
             ],
             options={
@@ -94,15 +92,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "is_public",
-                    models.BooleanField(
-                        default=False, verbose_name="Доступна для просмотра другим"
-                    ),
+                    models.BooleanField(default=False, verbose_name="Доступна для просмотра другим"),
                 ),
                 (
                     "created_at",
-                    models.DateTimeField(
-                        auto_now_add=True, verbose_name="Дата создания"
-                    ),
+                    models.DateTimeField(auto_now_add=True, verbose_name="Дата создания"),
                 ),
             ],
             options={

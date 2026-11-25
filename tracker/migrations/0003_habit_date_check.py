@@ -13,8 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="habit",
             name="date_check",
-            field=models.DateField(
-                blank=True, null=True, verbose_name="Дата проверки для отправки"
-            ),
+            field=models.DateField(blank=True, null=True, verbose_name="Дата проверки для отправки"),
         ),
     ]

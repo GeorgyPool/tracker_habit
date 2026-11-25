@@ -16,9 +16,7 @@ class ValidateTimeForHabit:
 
         if time_zone_habit is not None:
             if time_zone_habit > seconds:
-                raise ValidationError(
-                    "Время выполнения привычки не может превышать 120 сек"
-                )
+                raise ValidationError("Время выполнения привычки не может превышать 120 сек")
 
 
 class ValidateAddAssociatedHabit:
@@ -32,5 +30,6 @@ class ValidateAddAssociatedHabit:
 
         if habit.reward is not None:
             raise ValidationError(
-                "Связанную приятную привычку можно добавить только к полезной привычке у которой отсутствует награда за привычку"
+                "Связанную приятную привычку можно добавить "
+                "только к полезной привычке у которой отсутствует награда за привычку"
             )

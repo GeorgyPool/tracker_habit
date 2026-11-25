@@ -11,9 +11,7 @@ class User(AbstractUser):
 
     email = models.EmailField(unique=True, verbose_name="Электронная почта")
 
-    username = models.CharField(
-        verbose_name="Имя пользователя", blank=True, null=True, unique=False
-    )
+    username = models.CharField(verbose_name="Имя пользователя", blank=True, null=True, unique=False)
 
     phone_number = models.CharField(
         max_length=11,
@@ -26,9 +24,7 @@ class User(AbstractUser):
 
     tg_id = models.IntegerField(unique=True, verbose_name="Телеграм id")
 
-    avatar = models.ImageField(
-        upload_to="avatar/", verbose_name="Аватарка", blank=True, null=True
-    )
+    avatar = models.ImageField(upload_to="avatar/", verbose_name="Аватарка", blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 

@@ -1,11 +1,10 @@
-import requests
 from celery import shared_task
 
-from config.settings import URL_BOT
-from tracker.models import AssociatedHabit, Habit
-from tracker.services import (manager_sends_habit_every_day,
-                              manager_sends_habit_every_tree_days,
-                              manager_sends_habit_every_week)
+from tracker.services import (
+    manager_sends_habit_every_day,
+    manager_sends_habit_every_tree_days,
+    manager_sends_habit_every_week,
+)
 
 
 @shared_task()

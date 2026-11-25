@@ -9,10 +9,6 @@ app_name = TrackerConfig.name
 
 router = DefaultRouter()
 router.register(r"habit", views.HabitViewSet, basename="habit")
-router.register(
-    r"associated_habit", views.AssociatedHabitViewSet, basename="associated_habit"
-)
+router.register(r"associated_habit", views.AssociatedHabitViewSet, basename="associated_habit")
 
-urlpatterns = [
-    path("public/", views.PublicHabit.as_view(), name="public")
-] + router.urls
+urlpatterns = [path("public/", views.PublicHabit.as_view(), name="public")] + router.urls

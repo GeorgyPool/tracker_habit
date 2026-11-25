@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 import requests
 from django.utils import timezone
@@ -46,9 +46,7 @@ def manager_sends_habit_every_tree_days() -> None:
     day = timezone.now().date() - timedelta(days=3)
     current_time = timezone.localtime().replace(second=0, microsecond=0).time()
 
-    for habit in Habit.objects.filter(
-        periodic_habit=Habit.every_three_days, date_check=day, time=current_time
-    ):
+    for habit in Habit.objects.filter(periodic_habit=Habit.every_three_days, date_check=day, time=current_time):
         habit.date_check = timezone.now().date()
         habit.save()
         reward_part = f"\nНаграда: {habit.reward}" if habit.reward else ""
@@ -72,9 +70,7 @@ def manager_sends_habit_every_week() -> None:
     day = timezone.now().date() - timedelta(days=3)
     current_time = timezone.localtime().replace(second=0, microsecond=0).time()
 
-    for habit in Habit.objects.filter(
-        periodic_habit=Habit.every_weeks, date_check=day, time=current_time
-    ):
+    for habit in Habit.objects.filter(periodic_habit=Habit.every_weeks, date_check=day, time=current_time):
         habit.date_check = timezone.now().date()
         habit.save()
         reward_part = f"\nНаграда: {habit.reward}" if habit.reward else ""

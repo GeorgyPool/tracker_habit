@@ -34,3 +34,20 @@ linters = [
     "isort (>=9.0.2,<10.0.0)",
     "mypy (>=2.4.1,<3.0.0)"
 ]
+
+[tool.black]
+line-length = 119
+exclude = '''
+(
+  /(
+      \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | dist
+  )/
+  | foo.py
+)
+'''

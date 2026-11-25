@@ -22,16 +22,12 @@ class Command(BaseCommand):
             user.save()
             self.stdout.write(self.style.SUCCESS("Пользователь создан"))
         except IntegrityError as e:
-            self.stdout.write(
-                self.style.WARNING(f"Такой пользователь уже существует: {e}")
-            )
+            self.stdout.write(self.style.WARNING(f"Такой пользователь уже существует: {e}"))
 
         try:
             get_group = Group.objects.get(name="moderators")
             user = User.objects.get(email="moder_user@example.com")
             user.groups.add(get_group)
-            self.stdout.write(
-                self.style.SUCCESS("Пользователь с правами модератора успешно создан")
-            )
+            self.stdout.write(self.style.SUCCESS("Пользователь с правами модератора успешно создан"))
         except Exception as e:
             self.stdout.write(self.style.WARNING(f"Произошла ошибка: {type(e)}"))

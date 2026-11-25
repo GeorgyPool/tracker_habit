@@ -8,9 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            user = User.objects.create_user(
-                email="super@example.com", username="super", tg_id=235680
-            )
+            user = User.objects.create_user(email="super@example.com", username="super", tg_id=235680)
             user.save()
             user.set_password("098")
             user.save()
